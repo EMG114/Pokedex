@@ -73,7 +73,7 @@ class PokedexCollection: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PokedexCollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .blue
+       // cell.backgroundColor = .blue
         return cell
     }
 

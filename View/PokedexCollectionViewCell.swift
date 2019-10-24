@@ -23,7 +23,7 @@ class PokedexCollectionViewCell: UICollectionViewCell {
         let viewContainer = UIView()
         viewContainer.backgroundColor = .mainPink()
         viewContainer.addSubview(nameLabel)
-       // nameLabel.center(inView: viewContainer)
+        nameLabel.center(inView: viewContainer)
         return viewContainer
     }()
     
@@ -31,9 +31,8 @@ class PokedexCollectionViewCell: UICollectionViewCell {
         let nameContainerLabel = UILabel()
         nameContainerLabel.textColor = .white
         nameContainerLabel.font = UIFont.systemFont(ofSize: 16)
-        nameContainerLabel.text = "Pika"
+        nameContainerLabel.text = "Pikachu"
         nameContainerLabel.backgroundColor = .mainPink()
-        nameContainerLabel.center(inView: nameContainerLabel)
         return nameContainerLabel
     }()
     
@@ -56,7 +55,7 @@ class PokedexCollectionViewCell: UICollectionViewCell {
         addSubview(imageView)
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 32)
         
-        addSubview(nameLabel)
-        nameLabel.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+        addSubview(nameContainerView)
+            nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
     }
 }
