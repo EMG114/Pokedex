@@ -29,8 +29,15 @@ class Service {
             guard let data = data else { return }
             
             do {
-                guard let resultArray = try JSONSerialization.jsonObject(with: data , options: []) as? AnyObject  else { return }
-                print(resultArray)
+                guard let resultArray = try JSONSerialization.jsonObject(with: data , options: []) as? [AnyObject]  else { return }
+       
+                for (key, result) in resultArray.enumerated() {
+                    if let dictionary = result as? [String: AnyObject] {
+                        let pokemon = Pokemon(ide: key, dictionary: dictionary)
+                    }
+                }
+                
+                
             } catch let error {
                 print("Failed", error.localizedDescription)
             }
