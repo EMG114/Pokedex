@@ -23,6 +23,7 @@ class PokedexCollection: UICollectionViewController {
         
         // Do any additional setup after loading the view.
         configureViewComponents()
+        fetchPokemon()
         
     }
     
@@ -30,6 +31,12 @@ class PokedexCollection: UICollectionViewController {
     
     @objc func showSearchBar() {
         
+    }
+    
+    //MARK: - API
+    
+    func fetchPokemon() {
+        Service.shared.fetchPokemon()
     }
     
     
