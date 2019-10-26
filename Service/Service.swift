@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class Service {
@@ -35,15 +36,39 @@ class Service {
                 for (key, result) in resultArray.enumerated() {
                     if let dictionary = result as? [String: AnyObject] {
                         let pokemon = Pokemon(id: key, dictionary: dictionary)
-                        pokemonArray.append(pokemon)
+                        guard let imageUrl = pokemon.imageUrl else { return }
+                        
+                        self.fetchImage(withUrlString: imageUrl) { (image) in
+                            pokemon.image = image
+                            pokemonArray.append(pokemon)
+                            completion(pokemonArray)
+                        }
+                       
                     }
-                    completion(pokemonArray)
+                 
                 }
                 
                 
             } catch let error {
                 print("Failed", error.localizedDescription)
             }
+        }
+        .resume()
+    }
+    
+    private func fetchImage(withUrlString urlString: String, completion: @escaping(UIImage) -> ()) {
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url ) { (data, response, error) in
+            
+            if let error = error {
+                print("Failed to load", error.localizedDescription)
+                return
+            }
+            
+            guard let data = data else { return }
+            guard let image = UIImage(data: data) else { return }
+            completion(image)
         }
         .resume()
     }
