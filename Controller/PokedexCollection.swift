@@ -11,6 +11,10 @@ import UIKit
 private let reuseIdentifier = "PokedexCollectionViewCell"
 
 class PokedexCollection: UICollectionViewController {
+    
+    //MARK: - Properties
+    
+    var pokemons = [Pokemon]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +40,9 @@ class PokedexCollection: UICollectionViewController {
     //MARK: - API
     
     func fetchPokemon() {
-        Service.shared.fetchPokemon()
+        Service.shared.fetchPokemon { pokemons in
+            self.pokemons = pokemons
+        }
     }
     
     
