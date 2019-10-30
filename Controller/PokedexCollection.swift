@@ -16,9 +16,8 @@ class PokedexCollection: UICollectionViewController {
     
     var pokemons = [Pokemon]()
     
-    let infoView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .mainPink()
+    let infoView: InfoView = {
+        let view = InfoView()
         view.layer.cornerRadius = 5
         return view
     }()
