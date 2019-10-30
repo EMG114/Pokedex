@@ -54,6 +54,14 @@ class PokedexCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Selectors
+    
+    @objc func longPressed(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+        print("pressed did begin....")
+        }
+    }
+    
     // MARK: - Helper Method
     
     func configureViewComponent() {
@@ -64,5 +72,8 @@ class PokedexCollectionViewCell: UICollectionViewCell {
         
         addSubview(nameContainerView)
             nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+        
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
+        self.addGestureRecognizer(longGesture)
     }
 }
