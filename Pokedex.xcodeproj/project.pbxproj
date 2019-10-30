@@ -16,6 +16,7 @@
 		079CF5252360DE480095A5F7 /* PokedexCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079CF5242360DE480095A5F7 /* PokedexCollection.swift */; };
 		079CF5272360E1890095A5F7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079CF5262360E1890095A5F7 /* Extensions.swift */; };
 		079CF5292360F0E50095A5F7 /* PokedexCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079CF5282360F0E50095A5F7 /* PokedexCollectionViewCell.swift */; };
+		07B61B81236A292E00107006 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B61B80236A292E00107006 /* InfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		079CF5242360DE480095A5F7 /* PokedexCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexCollection.swift; sourceTree = "<group>"; };
 		079CF5262360E1890095A5F7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		079CF5282360F0E50095A5F7 /* PokedexCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexCollectionViewCell.swift; sourceTree = "<group>"; };
+		07B61B80236A292E00107006 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				079CF5282360F0E50095A5F7 /* PokedexCollectionViewCell.swift */,
+				07B61B80236A292E00107006 /* InfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B61B81236A292E00107006 /* InfoView.swift in Sources */,
 				079CF50C2360DD010095A5F7 /* AppDelegate.swift in Sources */,
 				0772CA1923623AEE00474FB4 /* Service.swift in Sources */,
 				079CF5252360DE480095A5F7 /* PokedexCollection.swift in Sources */,
