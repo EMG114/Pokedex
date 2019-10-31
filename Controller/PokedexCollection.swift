@@ -65,6 +65,7 @@ class PokedexCollection: UICollectionViewController {
     
     func configureSearchBar() {
         searchBar = UISearchBar()
+        searchBar.delegate = self
         searchBar.sizeToFit()
         searchBar.showsCancelButton = true
         searchBar.becomeFirstResponder()
@@ -75,14 +76,14 @@ class PokedexCollection: UICollectionViewController {
     }
     
     func dismissInfoV(pokemon: Pokemon?) {
-         UIView.animate(withDuration: 0.5, animations: {
-             self.visualEffectView.alpha = 0
-             self.infoView.alpha = 0
-             self.infoView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-         }) { (_) in
-             self.infoView.removeFromSuperview()
-         }
-     }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.visualEffectView.alpha = 0
+            self.infoView.alpha = 0
+            self.infoView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }) { (_) in
+            self.infoView.removeFromSuperview()
+        }
+    }
     
     func configureViewComponents() {
         collectionView.backgroundColor = .white
@@ -104,7 +105,7 @@ class PokedexCollection: UICollectionViewController {
         visualEffectView.addGestureRecognizer(gesture)
     }
     
-    // MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource/Delegate
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -124,6 +125,18 @@ class PokedexCollection: UICollectionViewController {
     
 }
 
+// MARK: - UISearchBarDelegate
+
+extension PokedexCollection: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        navigationItem.titleView = nil
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target:self, action: #selector(showSearchBar))
+        navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
 extension PokedexCollection: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -136,6 +149,8 @@ extension PokedexCollection: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+// MARK: - Custome Delegates
 
 extension PokedexCollection: PokedexCellDelegate {
     func presentInfoView(withPokemon pokemon: Pokemon) {
@@ -159,7 +174,7 @@ extension PokedexCollection: PokedexCellDelegate {
 extension PokedexCollection: InfoViewDelegate {
     func dismissInfoView(withPokemon pokemon: Pokemon?) {
         dismissInfoV(pokemon: pokemon)
-
+        
     }
     
     
