@@ -8,9 +8,31 @@
 
 import UIKit
 
+protocol InfoViewDelegate {
+    func dismissInfoView(withPokemon pokemon: Pokemon?)
+}
+
 class InfoView: UIView {
     
     // MARK: - Properties
+    
+    var delegate: InfoViewDelegate?
+    
+    var pokemon: Pokemon? {
+          didSet {
+              guard let pokemon = self.pokemon else { return }
+              guard let type = pokemon.type else { return }
+              guard let defense = pokemon.defense else { return }
+              guard let attack = pokemon.attack else { return }
+              guard let id = pokemon.id else { return }
+              guard let height = pokemon.height else { return }
+              guard let weight = pokemon.weight else { return }
+              
+              imageView.image = pokemon.image
+              nameLabel.text = pokemon.name?.capitalized
+            
+          }
+      }
     
     let imageView: UIImageView = {
          let iv = UIImageView()
@@ -100,6 +122,8 @@ class InfoView: UIView {
     
     @objc func handleViewMoreInfo() {
         print("handle view")
+        guard let pokemon = self.pokemon else { return }
+        delegate?.dismissInfoView(withPokemon: pokemon)
     }
     
     // MARK: - Helper Functions
