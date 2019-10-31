@@ -15,6 +15,7 @@ class PokedexCollection: UICollectionViewController {
     //MARK: - Properties
     
     var pokemons = [Pokemon]()
+    var searchBar: UISearchBar!
     
     let infoView: InfoView = {
         let view = InfoView()
@@ -40,7 +41,7 @@ class PokedexCollection: UICollectionViewController {
     // MARK: - Selectors
     
     @objc func showSearchBar() {
-        
+        configureSearchBar()
     }
     
     @objc func handleDismissal() {
@@ -62,7 +63,18 @@ class PokedexCollection: UICollectionViewController {
     
     // MARK: - Helper Functions
     
-    func dismissInfoView(pokemon: Pokemon?) {
+    func configureSearchBar() {
+        searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        searchBar.showsCancelButton = true
+        searchBar.becomeFirstResponder()
+        searchBar.tintColor = .white
+        
+        navigationItem.rightBarButtonItem = nil
+        navigationItem.titleView = searchBar
+    }
+    
+    func dismissInfoV(pokemon: Pokemon?) {
          UIView.animate(withDuration: 0.5, animations: {
              self.visualEffectView.alpha = 0
              self.infoView.alpha = 0
@@ -146,7 +158,7 @@ extension PokedexCollection: PokedexCellDelegate {
 
 extension PokedexCollection: InfoViewDelegate {
     func dismissInfoView(withPokemon pokemon: Pokemon?) {
-        dismissInfoView(withPokemon: pokemon)
+        dismissInfoV(pokemon: pokemon)
 
     }
     
