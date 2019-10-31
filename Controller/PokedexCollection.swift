@@ -15,6 +15,8 @@ class PokedexCollection: UICollectionViewController {
     //MARK: - Properties
     
     var pokemons = [Pokemon]()
+    var filteredPokemon = [Pokemon]()
+    var inSearchMode = false
     var searchBar: UISearchBar!
     
     let infoView: InfoView = {
@@ -75,6 +77,11 @@ class PokedexCollection: UICollectionViewController {
         navigationItem.titleView = searchBar
     }
     
+    func configureSearchBarButton() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target:self, action: #selector(showSearchBar))
+              navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+    
     func dismissInfoV(pokemon: Pokemon?) {
         UIView.animate(withDuration: 0.5, animations: {
             self.visualEffectView.alpha = 0
@@ -87,13 +94,13 @@ class PokedexCollection: UICollectionViewController {
     
     func configureViewComponents() {
         collectionView.backgroundColor = .white
-        
+    
         navigationController?.navigationBar.barTintColor = .mainPink()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = .black
         navigationItem.title = "Pokedex"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target:self, action: #selector(showSearchBar))
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        
+        configureSearchBarButton()
         
         collectionView.register(PokedexCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
@@ -113,12 +120,14 @@ class PokedexCollection: UICollectionViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pokemons.count
+        return inSearchMode ? filteredPokemon.count : pokemons.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PokedexCollectionViewCell else { return UICollectionViewCell() }
-        cell.pokemon = pokemons[indexPath.item]
+    
+        
+        cell.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
         cell.delegate = self
         return cell
     }
@@ -130,8 +139,19 @@ class PokedexCollection: UICollectionViewController {
 extension PokedexCollection: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         navigationItem.titleView = nil
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target:self, action: #selector(showSearchBar))
-        navigationItem.rightBarButtonItem?.tintColor = .white
+     configureSearchBarButton()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" || searchBar.text == nil {
+            inSearchMode = false
+            collectionView.reloadData()
+            view.endEditing(true)
+        } else {
+            inSearchMode = true
+            filteredPokemon = pokemons.filter({ $0.name?.range(of: searchText) != nil })
+            collectionView.reloadData()
+        }
     }
 }
 
