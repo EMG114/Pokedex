@@ -118,7 +118,6 @@ class PokedexCollection: UICollectionViewController {
         return 1
     }
     
-    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return inSearchMode ? filteredPokemon.count : pokemons.count
     }
@@ -130,6 +129,11 @@ class PokedexCollection: UICollectionViewController {
         cell.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
         cell.delegate = self
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = PokemonInfoController()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 }
