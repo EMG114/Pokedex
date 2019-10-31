@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol PokedexCellDelegate {
+    func presentInfoView(withPokemon pokemon: Pokemon)
+}
+
 class PokedexCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    
+    var delegate: PokedexCellDelegate?
     
     var pokemon:  Pokemon? {
         didSet {
@@ -21,7 +27,8 @@ class PokedexCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imgv = UIImageView ()
-        imgv.backgroundColor = .systemGroupedBackground
+        imgv.backgroundColor = .secondarySystemBackground
+          //  .systemGroupedBackground
         imgv.contentMode = .scaleAspectFit
         return imgv
     }()
@@ -58,7 +65,8 @@ class PokedexCollectionViewCell: UICollectionViewCell {
     
     @objc func longPressed(sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
-        print("pressed did begin....")
+            guard let pokemon = self.pokemon else { return }
+            delegate?.presentInfoView(withPokemon: pokemon)
         }
     }
     
