@@ -43,6 +43,11 @@ class PokedexCollection: UICollectionViewController {
         
     }
     
+    @objc func handleDismissal() {
+        dismissInfoView(withPokemon: nil)
+        
+    }
+    
     //MARK: - API
     
     func fetchPokemon() {
@@ -56,6 +61,16 @@ class PokedexCollection: UICollectionViewController {
     
     
     // MARK: - Helper Functions
+    
+    func dismissInfoView(pokemon: Pokemon?) {
+         UIView.animate(withDuration: 0.5, animations: {
+             self.visualEffectView.alpha = 0
+             self.infoView.alpha = 0
+             self.infoView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+         }) { (_) in
+             self.infoView.removeFromSuperview()
+         }
+     }
     
     func configureViewComponents() {
         collectionView.backgroundColor = .white
@@ -73,8 +88,8 @@ class PokedexCollection: UICollectionViewController {
         visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         visualEffectView.alpha = 0
         
-  //      let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
-   //     visualEffectView.addGestureRecognizer(gesture)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
+        visualEffectView.addGestureRecognizer(gesture)
     }
     
     // MARK: UICollectionViewDataSource
@@ -131,13 +146,8 @@ extension PokedexCollection: PokedexCellDelegate {
 
 extension PokedexCollection: InfoViewDelegate {
     func dismissInfoView(withPokemon pokemon: Pokemon?) {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.visualEffectView.alpha = 0
-                  self.infoView.alpha = 0
-                  self.infoView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-        }, completion: { (_) in
-            self.infoView.removeFromSuperview()
-        })
+        dismissInfoView(withPokemon: pokemon)
+
     }
     
     
