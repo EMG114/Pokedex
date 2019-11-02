@@ -15,9 +15,23 @@ class PokemonInfoController: UIViewController {
     
     var pokemon: Pokemon? {
         didSet {
-            
+            navigationItem.title = pokemon?.name?.capitalized
         }
     }
+    
+    let imageView: UIImageView = {
+          let iv = UIImageView ()
+          iv.backgroundColor = .secondarySystemBackground
+          iv.contentMode = .scaleAspectFit
+          return iv
+      }()
+    
+    let infoLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.numberOfLines = 0
+        return label
+    }()
     
     // MARK: - Init
     

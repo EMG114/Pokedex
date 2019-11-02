@@ -133,6 +133,7 @@ class PokedexCollection: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = PokemonInfoController()
+        controller.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
         navigationController?.pushViewController(controller, animated: true)
     }
     
