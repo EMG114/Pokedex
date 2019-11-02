@@ -17,7 +17,6 @@ class InfoView: UIView {
     // MARK: - Properties
     
     var delegate: InfoViewDelegate?
-    var configureForInfoController = false
     
     var pokemon: Pokemon? {
         didSet {
@@ -118,12 +117,6 @@ class InfoView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
-        if configureForInfoController {
-            configureViewForInfoController()
-        } else {
-             configureComponents()
-        }
     }
     
     required init?(coder: NSCoder) {
