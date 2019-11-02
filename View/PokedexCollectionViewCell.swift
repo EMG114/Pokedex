@@ -28,7 +28,7 @@ class PokedexCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imgv = UIImageView ()
         imgv.backgroundColor = .secondarySystemBackground
-          //  .systemGroupedBackground
+        //  .systemGroupedBackground
         imgv.contentMode = .scaleAspectFit
         return imgv
     }()
@@ -54,7 +54,7 @@ class PokedexCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-      configureViewComponent()
+        configureViewComponent()
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +80,7 @@ class PokedexCollectionViewCell: UICollectionViewCell {
         imageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: self.frame.height - 32)
         
         addSubview(nameContainerView)
-            nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
+        nameContainerView.anchor(top: nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 32)
         
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressed))
         self.addGestureRecognizer(longGesture)

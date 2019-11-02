@@ -130,12 +130,12 @@ class PokedexCollection: UICollectionViewController {
         cell.delegate = self
         return cell
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = PokemonInfoController()
-        controller.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
-        navigationController?.pushViewController(controller, animated: true)
-    }
+    //
+    //    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //        let controller = PokemonInfoController()
+    //        controller.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
+    //        navigationController?.pushViewController(controller, animated: true)
+    //    }
     
 }
 
@@ -151,7 +151,7 @@ extension PokedexCollection: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    
+        
         if searchText == "" || searchBar.text == nil {
             inSearchMode = false
             collectionView.reloadData()
