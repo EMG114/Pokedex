@@ -23,7 +23,10 @@ struct EvolutionChain {
         evolutionArray?.forEach({ (dict) in
             if let idString = dict["id"] as? String {
                 guard let id = Int(idString) else { return }
-                results.append(id)
+                //original pokemon number
+                if id <= 151 {
+                           results.append(id)
+                }
             }
         })
         return results
