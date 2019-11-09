@@ -74,21 +74,21 @@ class PokedexCollection: UICollectionViewController {
     func configureSearchBar(shouldShow: Bool) {
         if shouldShow {
             searchBar = UISearchBar()
-                   searchBar.delegate = self
-                   searchBar.sizeToFit()
-                   searchBar.showsCancelButton = true
-                   searchBar.becomeFirstResponder()
-                   searchBar.tintColor = .white
-                   
-                   navigationItem.rightBarButtonItem = nil
-                   navigationItem.titleView = searchBar
+            searchBar.delegate = self
+            searchBar.sizeToFit()
+            searchBar.showsCancelButton = true
+            searchBar.becomeFirstResponder()
+            searchBar.tintColor = .white
+            
+            navigationItem.rightBarButtonItem = nil
+            navigationItem.titleView = searchBar
         } else {
             navigationItem.titleView = nil
-               configureSearchBarButton()
-               inSearchMode = false
-               collectionView.reloadData()
+            configureSearchBarButton()
+            inSearchMode = false
+            collectionView.reloadData()
         }
-   
+        
         
     }
     
@@ -149,6 +149,17 @@ class PokedexCollection: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let poke = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
+        var pokeArray = [Pokemon]()
+        if let evolChain = poke.evolutionChain {
+            let evChain = EvolutionChain(evolutionArray: evolChain)
+            let evolId = evChain.evolutionId
+            evolId.forEach { (id) in
+                pokeArray.append(pokemons[id - 1])
+            }
+            poke.evoArray = pokeArray
+        }
+        
+        
         showPOkemonInfoControl(pokemon: poke)
     }
     
@@ -159,7 +170,7 @@ class PokedexCollection: UICollectionViewController {
 extension PokedexCollection: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
- configureSearchBar(shouldShow: false)
+        configureSearchBar(shouldShow: false)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

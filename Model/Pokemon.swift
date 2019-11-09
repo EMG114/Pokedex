@@ -18,7 +18,7 @@ struct EvolutionChain {
         self.evolutionId = setEvolutionId()
     }
     
-    func setEvolutionId() -> [Int]{
+    func setEvolutionId() -> [Int] {
         var results = [Int]()
         evolutionArray?.forEach({ (dict) in
             if let idString = dict["id"] as? String {
@@ -44,6 +44,7 @@ class Pokemon {
     var type: String?
     var baseExperience: Int?
     var evolutionChain: [[String: AnyObject]]?
+    var evoArray:[Pokemon]?
     
     init(id: Int, dictionary:[String: AnyObject]) {
         
@@ -77,8 +78,8 @@ class Pokemon {
         }
         
         if let evolutionChain = dictionary["evolutionChain"] as? [[String: AnyObject]] {
-                 self.evolutionChain = evolutionChain
-             }
+            self.evolutionChain = evolutionChain
+        }
         
     }
 }
