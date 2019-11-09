@@ -65,6 +65,12 @@ class PokedexCollection: UICollectionViewController {
     
     // MARK: - Helper Functions
     
+    func showPOkemonInfoControl(pokemon: Pokemon) {
+        let controller = PokemonInfoController()
+               controller.pokemon = pokemon
+               self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func configureSearchBar() {
         searchBar = UISearchBar()
         searchBar.delegate = self
@@ -89,6 +95,8 @@ class PokedexCollection: UICollectionViewController {
             self.infoView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         }) { (_) in
             self.infoView.removeFromSuperview()
+            guard let pokemon = pokemon else { return }
+            self.showPOkemonInfoControl(pokemon: pokemon)
         }
     }
     
@@ -124,17 +132,14 @@ class PokedexCollection: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PokedexCollectionViewCell else { return UICollectionViewCell() }
-        
-        
         cell.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
         cell.delegate = self
         return cell
     }
     
         override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let controller = PokemonInfoController()
-            controller.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
-            navigationController?.pushViewController(controller, animated: true)
+            let poke = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
+            showPOkemonInfoControl(pokemon: poke)
         }
     
 }
