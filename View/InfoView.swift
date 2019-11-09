@@ -76,7 +76,7 @@ class InfoView: UIView {
         let label = UILabel()
         label.textColor = .mainPink()
         label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.text = "Charmander000000"
+        label.text = "Charmander005"
         return label
     }()
     
@@ -142,29 +142,32 @@ class InfoView: UIView {
     
     func configureViewForInfoController() {
         
+        self.layer.masksToBounds = true
+        
+        addSubview(imageView)
+        
         addSubview(typeLabel)
-         typeLabel.anchor(top: imageView.topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-         
-         addSubview(defenseLabel)
-         defenseLabel.anchor(top: imageView.topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-         
-         let separatorView = UIView()
-         separatorView.backgroundColor = .systemGroupedBackground
-         //.groupTableViewBackground
-         addSubview(separatorView)
-         separatorView.anchor(top: typeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 1)
-         
-         addSubview(heightLabel)
-         heightLabel.anchor(top: separatorView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-         
-         addSubview(weightLabel)
-         weightLabel.anchor(top: heightLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-         
-         addSubview(pokedexIdLabel)
-         pokedexIdLabel.anchor(top: separatorView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
-         
-         addSubview(attackLabel)
-         attackLabel.anchor(top: pokedexIdLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        typeLabel.anchor(top: imageView.topAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(defenseLabel)
+        defenseLabel.anchor(top: imageView.topAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        let separatorView = UIView()
+        separatorView.backgroundColor = .systemGroupedBackground
+        addSubview(separatorView)
+        separatorView.anchor(top: typeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 1)
+        
+        addSubview(heightLabel)
+        heightLabel.anchor(top: separatorView.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(weightLabel)
+        weightLabel.anchor(top: heightLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: nil, paddingTop: 16, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        addSubview(pokedexIdLabel)
+        pokedexIdLabel.anchor(top: separatorView.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
+        
+        addSubview(attackLabel)
+        attackLabel.anchor(top: pokedexIdLabel.bottomAnchor, left: nil, bottom: nil, right: rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         
     }
     
@@ -187,7 +190,6 @@ class InfoView: UIView {
         
         let separatorView = UIView()
         separatorView.backgroundColor = .systemGroupedBackground
-        //.groupTableViewBackground
         addSubview(separatorView)
         separatorView.anchor(top: typeLabel.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 8, paddingLeft: 4, paddingBottom: 0, paddingRight: 4, width: 0, height: 1)
         

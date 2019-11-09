@@ -28,7 +28,6 @@ class PokedexCollectionViewCell: UICollectionViewCell {
     let imageView: UIImageView = {
         let imgv = UIImageView ()
         imgv.backgroundColor = .secondarySystemBackground
-        //  .systemGroupedBackground
         imgv.contentMode = .scaleAspectFit
         return imgv
     }()

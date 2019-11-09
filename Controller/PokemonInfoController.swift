@@ -38,14 +38,13 @@ class PokemonInfoController: UIViewController {
 
     let infoView: InfoView = {
         let view = InfoView()
-        view.configureComponents()
+        view.configureViewForInfoController()
         return view
     }()
 
     lazy var evolutionView: UIView = {
         let view = UIView()
         view.backgroundColor = .mainPink()
-
         view.addSubview(evoLabel)
         evoLabel.translatesAutoresizingMaskIntoConstraints = false
         evoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

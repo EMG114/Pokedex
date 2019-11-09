@@ -130,12 +130,12 @@ class PokedexCollection: UICollectionViewController {
         cell.delegate = self
         return cell
     }
-    //
-    //    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //        let controller = PokemonInfoController()
-    //        controller.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
-    //        navigationController?.pushViewController(controller, animated: true)
-    //    }
+    
+        override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let controller = PokemonInfoController()
+            controller.pokemon = inSearchMode ?  filteredPokemon[indexPath.item] : pokemons[indexPath.item]
+            navigationController?.pushViewController(controller, animated: true)
+        }
     
 }
 
@@ -185,6 +185,7 @@ extension PokedexCollection: PokedexCellDelegate {
     func presentInfoView(withPokemon pokemon: Pokemon) {
         view.addSubview(infoView)
         infoView.delegate = self
+        infoView.configureComponents()
         infoView.pokemon = pokemon
         infoView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width - 64, height: 350)
         infoView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
