@@ -22,6 +22,7 @@ class Pokemon {
     var description: String?
     var type: String?
     var baseExperience: Int?
+    var evolutionChain: [[String: AnyObject]]?
     
     init(id: Int, dictionary:[String: AnyObject]) {
         
@@ -53,5 +54,10 @@ class Pokemon {
         if let type = dictionary["type"] as? String {
             self.type = type
         }
+        
+        if let evolutionChain = dictionary["evolutionChain"] as? [[String: AnyObject]] {
+                 self.evolutionChain = evolutionChain
+             }
+        
     }
 }
