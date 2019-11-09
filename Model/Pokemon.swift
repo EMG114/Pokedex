@@ -9,30 +9,6 @@
 import Foundation
 import UIKit
 
-struct EvolutionChain {
-    var evolutionArray: [[String:AnyObject]]?
-    var evolutionId = [Int]()
-    
-    init(evolutionArray: [[String:AnyObject]]) {
-        self.evolutionArray = evolutionArray
-        self.evolutionId = setEvolutionId()
-    }
-    
-    func setEvolutionId() -> [Int] {
-        var results = [Int]()
-        evolutionArray?.forEach({ (dict) in
-            if let idString = dict["id"] as? String {
-                guard let id = Int(idString) else { return }
-                //original pokemon number
-                if id <= 151 {
-                           results.append(id)
-                }
-            }
-        })
-        return results
-    }
-}
-
 class Pokemon {
     
     var name: String?
@@ -84,5 +60,29 @@ class Pokemon {
             self.evolutionChain = evolutionChain
         }
         
+    }
+}
+
+struct EvolutionChain {
+    var evolutionArray: [[String:AnyObject]]?
+    var evolutionId = [Int]()
+    
+    init(evolutionArray: [[String:AnyObject]]) {
+        self.evolutionArray = evolutionArray
+        self.evolutionId = setEvolutionId()
+    }
+    
+    func setEvolutionId() -> [Int] {
+        var results = [Int]()
+        evolutionArray?.forEach({ (dict) in
+            if let idString = dict["id"] as? String {
+                guard let id = Int(idString) else { return }
+                //original pokemon number
+                if id <= 151 {
+                           results.append(id)
+                }
+            }
+        })
+        return results
     }
 }
